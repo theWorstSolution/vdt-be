@@ -52,3 +52,17 @@ test('should get a student by id', async () => {
   expect(res.body).toHaveProperty('_id');
   expect(res.body.name).toBe(student.name);
 });
+
+
+// Test to update a student
+test('should update a student', async () => {
+  const student = new Student({ name: 'John Doe', gender: 'Male', school: 'XYZ University' });
+  await student.save();
+
+  const updatedData = { name: 'John Updated', gender: 'Male', school: 'XYZ University' };
+  const res = await request(app)
+    .patch(`/students/${student._id}`)
+    .send(updatedData)
+    .expect(200);
+  expect(res.body.name).toBe(updatedData.name);
+});
