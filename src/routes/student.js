@@ -50,4 +50,17 @@ router.patch('/:id', async (req, res) => {
   }
 });
 
+// Delete student
+router.delete('/:id', async (req, res) => {
+  try {
+    const student = await Student.findByIdAndDelete(req.params.id);
+    if (!student) {
+      return res.status(404).send();
+    }
+    res.status(200).json(student);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;

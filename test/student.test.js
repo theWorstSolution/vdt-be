@@ -66,3 +66,18 @@ test('should update a student', async () => {
     .expect(200);
   expect(res.body.name).toBe(updatedData.name);
 });
+
+// Test to delete a student
+test('should delete a student', async () => {
+  const student = new Student({ name: 'John Doe', gender: 'Male', school: 'XYZ University' });
+  await student.save();
+
+  await request(app)
+    .delete(`/students/${student._id}`)
+    .expect(200);
+
+  const res = await request(app)
+    .get(`/students/${student._id}`)
+    .expect(404);
+  expect(res.body).toEqual({});
+});
