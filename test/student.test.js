@@ -26,4 +26,17 @@ test('should create a new student', async () => {
   expect(res.body.name).toBe(newStudent.name);
 });
 
-// Các test cases khác
+// Test to get all students
+test('should get all students', async () => {
+  const student1 = new Student({ name: 'John Doe', gender: 'Male', school: 'XYZ University' });
+  const student2 = new Student({ name: 'Jane Doe', gender: 'Female', school: 'ABC University' });
+  await student1.save();
+  await student2.save();
+
+  const res = await request(app)
+    .get('/students')
+    .expect(200);
+  expect(res.body.length).toBe(2);
+  expect(res.body[0].name).toBe(student1.name);
+  expect(res.body[1].name).toBe(student2.name);
+});
