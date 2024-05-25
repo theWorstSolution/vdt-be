@@ -13,4 +13,14 @@ router.post('/', async (req, res) => {
     }
   });
 
+// List students
+router.get('/', async (req, res) => {
+  try {
+    const students = await Student.find();
+    res.status(200).send(students);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;
