@@ -36,4 +36,18 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+
+// Update student
+router.patch('/:id', async (req, res) => {
+  try {
+    const student = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    if (!student) {
+      return res.status(404).send();
+    }
+    res.status(200).json(student);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 module.exports = router;
