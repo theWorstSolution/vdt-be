@@ -40,3 +40,15 @@ test('should get all students', async () => {
   expect(res.body[0].name).toBe(student1.name);
   expect(res.body[1].name).toBe(student2.name);
 });
+
+// Test to get a student by ID
+test('should get a student by id', async () => {
+  const student = new Student({ name: 'Jane Doe', gender: 'Female', school: 'ABC University' });
+  await student.save();
+
+  const res = await request(app)
+    .get(`/students/${student._id}`)
+    .expect(200);
+  expect(res.body).toHaveProperty('_id');
+  expect(res.body.name).toBe(student.name);
+});

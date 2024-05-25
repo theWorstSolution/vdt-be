@@ -23,4 +23,17 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get student by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const student = await Student.findById(req.params.id);
+    if (!student) {
+      return res.status(404).send();
+    }
+    res.status(200).json(student);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;
