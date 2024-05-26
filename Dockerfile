@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:16-alpine
 
 WORKDIR /app
 
@@ -11,4 +11,4 @@ EXPOSE 3000
 
 # ENV MONGODB_URI=mongodb://mongo:27017/vdt2024
 
-CMD ["node", "src/server.js"]
+CMD ["node", "src/index.js"]
