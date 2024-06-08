@@ -19,11 +19,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+      - name: Extract tag name
+        id: extract_tag
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-backend:${{ regex(github.ref, /refs\/tags\/(<tag_name>)/, captures.tag_name) }}  # Replace with your image name
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-backend:${{ env.TAG_NAME }}  # Replace with your image name
 
       - name: Build cache cleanup (optional)
         uses: actions/cache@v3
@@ -38,21 +42,17 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
-      - name: Extract new tag
-        id: extract_tag
-        run: echo "::set-output name=TAG::${GITHUB_REF#refs/tags/}"
-
       - name: Update values.yaml in other repos
         env:
           PAT: ${{ secrets.PAT }}
+          TAG_NAME: ${{ env.TAG_NAME }}
         run: |
           REPOS=("vdt-be-helmChart")
           for repo in "${REPOS[@]}"; do
             git clone https://github:${{ secrets.PAT }}@github.com/theWorstSolution/$repo.git
             cd $repo
-            sed -i 's/^  appVersion: .*/  appVersion: '${{ steps.extract_tag.outputs.TAG }}'/' values.yaml
+            sed -i 's/^  appVersion: .*/  appVersion: '${{ env.TAG_NAME }}'/' values.yaml
             git add path/to/values.yaml
-            git commit -m "Update image version to ${{ steps.extract_tag.outputs.TAG }}"
+            git commit -m "Update image version to $TAG_NAME"
             git push https://github:${{ secrets.PAT }}@github.com/your-org/$repo.git
             cd ..
-          done
