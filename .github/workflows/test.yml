@@ -32,5 +32,6 @@ jobs:
 
       - name: Run unit tests
         env:
-          MONGODB_URI: mongodb://localhost:27017/vdt2024
+          MONGODB_URI: localhost:27017/vdt2024
+          PORT: 3000
         run: npm test
