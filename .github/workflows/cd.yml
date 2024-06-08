@@ -52,9 +52,9 @@ jobs:
           for repo in "${REPOS[@]}"; do
             git clone https://github:${{ secrets.PAT }}@github.com/theWorstSolution/$repo.git
             cd $repo
-            sed -i 's/^  appVersion: .*/  appVersion: '${TAG_NAME}'/' values.yaml
+            sed -i 's/^  appVersion: .*/  appVersion: '${{ env.TAG_NAME }}'/' values.yaml
             git add .
-            git commit -m "Update image version to ${TAG_NAME}"
+            git commit -m "Update image version to ${{ env.TAG_NAME }}"
             git push https://github:${{ secrets.PAT }}@github.com/theWorstSolution/$repo.git
             cd ..
           done
