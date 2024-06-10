@@ -31,19 +31,22 @@ const mongoConnectString = process.env.MONGODB_USERNAME ?
 console.log(mongoConnectString);
 mongoose.connect(mongoConnectString);
 
+// Log requests
+app.use((req, res, next) => {
+    logger.info(`${req.method} ${req.url} ${res.statusCode}`);
+    next();
+});
+
 app.use((req, res, next) => {
     const end = httpRequestDurationMicroseconds.startTimer();
     res.on('finish', () => {
-        end({ method: req.method, route: req.route.path, code: res.statusCode });
+        const route = req.route && req.route.path ? req.route.path : req.originalUrl;
+        end({ method: req.method, route: route, code: res.statusCode });
     });
     next();
 });
 
-// Log requests
-app.use((req, res, next) => {
-    logger.info(`${req.method} ${req.url}`);
-    next();
-});
+
 
 // enable cors
 app.use(cors());
@@ -56,5 +59,6 @@ app.get('/metrics', async (req, res) => {
     res.end(await promClient.register.metrics());
 });
 app.use('/students', studentRoutes);
+
 
 module.exports = app;

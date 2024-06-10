@@ -1,3 +1,131 @@
 {"level":"info","message":"GET /"}
 {"level":"info","message":"GET /students"}
 {"level":"info","message":"List students requested"}
+{"level":"info","message":"POST /undefined/students"}
+{"level":"info","message":"GET /"}
+{"level":"info","message":"GET /"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students/6651c0845b24f1a748a4f77c"}
+{"level":"info","message":"Get student by ID requested"}
+{"level":"info","message":"GET /students/6651c0845b24f1a748a4f77c"}
+{"level":"info","message":"Get student by ID requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"OPTIONS /students"}
+{"level":"info","message":"POST /students"}
+{"level":"info","message":"Create student requested"}
+{"level":"info","message":"OPTIONS /students"}
+{"level":"info","message":"POST /students"}
+{"level":"info","message":"Create student requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"OPTIONS /students/6666cf9ad290229717a9077d"}
+{"level":"info","message":"DELETE /students/6666cf9ad290229717a9077d"}
+{"level":"info","message":"Delete student requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students/6652f84f3a16319cf1c316ca"}
+{"level":"info","message":"Get student by ID requested"}
+{"level":"info","message":"GET /students/6652f84f3a16319cf1c316ca"}
+{"level":"info","message":"Get student by ID requested"}
+{"level":"info","message":"OPTIONS /students/6652f84f3a16319cf1c316ca"}
+{"level":"info","message":"PATCH /students/6652f84f3a16319cf1c316ca"}
+{"level":"info","message":"Update student requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students/6651c0845b24f1a748a4f77c"}
+{"level":"info","message":"Get student by ID requested"}
+{"level":"info","message":"GET /students/6651c0845b24f1a748a4f77c"}
+{"level":"info","message":"Get student by ID requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students/6652f84f3a16319cf1c316ca"}
+{"level":"info","message":"Get student by ID requested"}
+{"level":"info","message":"GET /students/6652f84f3a16319cf1c316ca"}
+{"level":"info","message":"Get student by ID requested"}
+{"level":"info","message":"OPTIONS /students/6652f84f3a16319cf1c316ca"}
+{"level":"info","message":"PATCH /students/6652f84f3a16319cf1c316ca"}
+{"level":"info","message":"Update student requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /metrics"}
+{"level":"info","message":"GET /favicon.ico"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students 200"}
+{"level":"info","message":"List students requested"}
+{"level":"info","message":"GET /students 200"}
+{"level":"info","message":"GET /students 200"}
