@@ -30,6 +30,8 @@ const mongoConnectString = process.env.MONGODB_USERNAME ?
 // const mongoConnectString = 'mongodb://' + process.env.MONGODB_URI
 console.log(mongoConnectString);
 mongoose.connect(mongoConnectString);
+// enable cors
+app.use(cors());
 
 // Log requests
 app.use((req, res, next) => {
@@ -48,8 +50,7 @@ app.use((req, res, next) => {
 
 
 
-// enable cors
-app.use(cors());
+
 app.options('*', cors());
 
 app.use(bodyParser.json());
