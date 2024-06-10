@@ -12,7 +12,7 @@ console.log('MONGODB_PASSWORD'+': '+process.env['MONGODB_PASSWORD']);
 console.log('PORT'+': '+process.env['PORT']);
 
 const mongoConnectString = process.env.MONGODB_USERNAME?
-    'mongodb://'+process.env.MONGODB_USERNAME+':'+process.env.MONGODB_PASSWORD+'@'+process.env.MONGODB_URI+'?authSource=admin&ssl=true':
+    'mongodb://'+process.env.MONGODB_USERNAME+':'+process.env.MONGODB_PASSWORD+'@'+process.env.MONGODB_URI+'?authSource=admin':
     'mongodb://'+process.env.MONGODB_URI
 console.log(mongoConnectString);
 mongoose.connect(mongoConnectString);
