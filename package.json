@@ -19,6 +19,7 @@
     "jest": "^29.7.0",
     "mocha": "^10.4.0",
     "mongoose": "^8.4.0",
-    "supertest": "^7.0.0"
+    "supertest": "^7.0.0",
+    "winston": "^3.13.0"
   }
 }
