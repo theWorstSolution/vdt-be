@@ -5,7 +5,7 @@ const studentRoutes = require('./routes/student');
 const cors = require('cors');
 const logger = require('./logger')
 const promClient = require('prom-client');
-
+const rateLimiter = require('./rateLimiter');
 const app = express();
 const collectDefaultMetrics = promClient.collectDefaultMetrics;
 collectDefaultMetrics();
@@ -54,6 +54,7 @@ app.use((req, res, next) => {
 app.options('*', cors());
 
 app.use(bodyParser.json());
+app.use(rateLimiter);
 
 app.get('/metrics', async (req, res) => {
     res.set('Content-Type', promClient.register.contentType);
