@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const Student = require('../models/student');
-const logger = require('../logger')
+const logger = require('../logger');
+const authRequire = require('../auth/authMiddleware');
 
 // Create student
-router.post('/', async (req, res) => {
+router.post('/', authRequire, async (req, res) => {
   // logger.info('Create student requested');
+    if(req.auth.role=='user'){
+      res.status(403).send();
+      return
+    }
     const student = new Student(req.body);
     try {
       await student.save();
@@ -27,7 +32,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get student by ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', authRequire, async (req, res) => {
   // logger.info('Get student by ID requested');
   try {
     const student = await Student.findById(req.params.id);
@@ -42,7 +47,7 @@ router.get('/:id', async (req, res) => {
 
 
 // Update student
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', authRequire, async (req, res) => {
   // logger.info('Update student requested');
   try {
     const student = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -56,8 +61,12 @@ router.patch('/:id', async (req, res) => {
 });
 
 // Delete student
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authRequire, async (req, res) => {
   // logger.info('Delete student requested');
+  if(req.auth.role=='user'){
+    res.status(403).send();
+    return
+  }
   try {
     const student = await Student.findByIdAndDelete(req.params.id);
     if (!student) {

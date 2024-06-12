@@ -5,7 +5,7 @@ const studentRoutes = require('./routes/student');
 const cors = require('cors');
 const logger = require('./logger')
 const promClient = require('prom-client');
-
+const rateLimiter = require('./rateLimiter');
 const app = express();
 const collectDefaultMetrics = promClient.collectDefaultMetrics;
 collectDefaultMetrics();
@@ -23,11 +23,11 @@ console.log('MONGODB_USERNAME' + ': ' + process.env['MONGODB_USERNAME']);
 console.log('MONGODB_PASSWORD' + ': ' + process.env['MONGODB_PASSWORD']);
 console.log('PORT' + ': ' + process.env['PORT']);
 
-const mongoConnectString = process.env.MONGODB_USERNAME ?
-    'mongodb://' + process.env.MONGODB_USERNAME + ':' + process.env.MONGODB_PASSWORD + '@' + process.env.MONGODB_URI + '?authSource=admin' :
-    'mongodb://' + process.env.MONGODB_URI
+// const mongoConnectString = process.env.MONGODB_USERNAME ?
+//     'mongodb://' + process.env.MONGODB_USERNAME + ':' + process.env.MONGODB_PASSWORD + '@' + process.env.MONGODB_URI + '?authSource=admin' :
+//     'mongodb://' + process.env.MONGODB_URI
 
-// const mongoConnectString = 'mongodb://' + process.env.MONGODB_URI
+const mongoConnectString = 'mongodb://' + process.env.MONGODB_URI
 console.log(mongoConnectString);
 mongoose.connect(mongoConnectString);
 // enable cors
@@ -54,6 +54,7 @@ app.use((req, res, next) => {
 app.options('*', cors());
 
 app.use(bodyParser.json());
+app.use(rateLimiter);
 
 app.get('/metrics', async (req, res) => {
     res.set('Content-Type', promClient.register.contentType);
