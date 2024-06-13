@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.prefix }}-deployment
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.prefix }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.prefix }}
+    spec:
+      containers:
+      - name: {{ .Values.prefix }}
+        image: '{{ .Values.image.name }}:{{ .Values.appVersion }}'
+        ports:
+        - containerPort: {{ .Values.configMap.PORT }}
+        env:
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.prefix }}-config
+              key: PORT
+        - name: MONGODB_URI
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.prefix }}-config
+              key: MONGODB_URI
+        - name: MONGODB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.prefix }}-secret
+              key: MONGODB_USERNAME
+        - name: MONGODB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.prefix }}-secret
+              key: MONGODB_PASSWORD
+
+      - name: haproxy
+        image: haproxy:latest
+        ports:
+        - containerPort: {{.Values.configMap.HAPROXY_PORT}}
+        volumeMounts:
+        - name: haproxy-config-volume
+          mountPath: /usr/local/etc/haproxy/haproxy.cfg
+          subPath: haproxy.cfg
+        - name: haproxy-cert-volume
+          mountPath: /usr/local/etc/haproxy/certs
+        securityContext:
+          privileged: true
+      
+      volumes:
+        - name: haproxy-config-volume
+          configMap:
+            name: haproxy-config
+
+        - name: haproxy-cert-volume
+          secret:
+            secretName: haproxy-cert

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.prefix }}-config
+data:
+  PORT: '{{ .Values.configMap.PORT }}'
+  MONGODB_URI: '{{ .Values.configMap.MONGODB_URI }}'
+  # Add more key-value pairs for your application settings

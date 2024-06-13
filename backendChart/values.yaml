@@ -1,0 +1,16 @@
+# Define default values for customization
+appVersion: 0.2.1
+replicas: 1
+prefix: nodejs-backend
+image:
+  name: agrainofsand/nodejs-backend
+service:
+  type: NodePort  # Adjust service type (e.g. NodePort) if needed
+configMap:
+  PORT: 3000  # Listening backend port
+  HAPROXY_PORT: 443
+  MONGODB_URI: mongodb:27017/vdt2024
+secrets:
+  MONGODB_USERNAME: mongoadmin
+  MONGODB_PASSWORD: securepassword
+# Add values for ConfigMap and Secret data if applicable

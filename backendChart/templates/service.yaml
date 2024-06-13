@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.prefix }}-service
+  labels:
+    app: vdt
+spec:
+  selector:
+    app: {{ .Values.prefix }}
+  ports:
+  - name: port1 # port of nodejs server use http
+    nodePort: 30002
+    protocol: TCP
+    port: {{ .Values.configMap.PORT }}
+    targetPort: {{ .Values.configMap.PORT }}
+  - name: port  # port of haproxy server use https
+    nodePort: 30000
+    protocol: TCP
+    port: {{ .Values.configMap.HAPROXY_PORT }}  # External port for accessing your application
+    targetPort: {{ .Values.configMap.HAPROXY_PORT }}  # Port exposed by your Node.js container 
+  type: {{ .Values.service.type }}
